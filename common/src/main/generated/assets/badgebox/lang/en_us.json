@@ -1,0 +1,18 @@
+{
+  "gui.badgebox.badge_box_gui.label": "League Badges",
+  "item.badgebox.badgesbox": "Badge Box",
+  "item.badgebox.badgesbox_ribbon": "Fancy Badge Box",
+  "item.badgebox.fairy_badge": "Aether Badge",
+  "item.badgebox.ghost_badge": "Soul Badge",
+  "item.badgebox.grass_badge": "Botanical Badge",
+  "item.badgebox.ice_badge": "Hoarfrost Badge",
+  "item.badgebox.mountain_badge": "Ridge Badge",
+  "item.badgebox.poison_badge": "Pestilence Badge",
+  "item.badgebox.steel_badge": "Engrenage Badge",
+  "item.badgebox.thunder_badge": "Surge Badge",
+  "item.badgebox.wave_badge": "Torrent Badge",
+  "item.badgebox.wyvern_badge": "Wyvern Badge",
+  "item_group.badgebox.badge_box_tab": "Badges",
+  "tag.item.badgebox.badges": "Badges",
+  "tag.item.badgebox.ribbons": "Ribbons"
+}

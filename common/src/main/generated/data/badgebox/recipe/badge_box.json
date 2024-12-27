@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "a": {
+      "item": "minecraft:red_wool"
+    },
+    "b": {
+      "item": "minecraft:white_wool"
+    },
+    "c": {
+      "tag": "c:chests"
+    }
+  },
+  "pattern": [
+    " a ",
+    "bcb",
+    " b "
+  ],
+  "result": {
+    "count": 1,
+    "id": "badgebox:badgesbox_ribbon"
+  }
+}

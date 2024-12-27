@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "badgebox",
+  "version": "${version}",
+  "name": "Badge Box",
+  "description": "Adds Badges and a Badge Box for Cobblemon",
+  "authors": [
+    "Linguardium",
+    "maste"
+  ],
+  "license": "ARR",
+  "icon": "assets/badgebox/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "mod.linguardium.badgebox.fabric.common.CobblemonBadgeBox"
+    ],
+    "client": [
+      "mod.linguardium.badgebox.fabric.client.CobblemonBadgeBoxClient"
+    ],
+    "fabric-datagen": [
+      "mod.linguardium.badgebox.fabric.datagen.CobblemonBadgeBoxDataGenerator"
+    ]
+  },
+  "mixins": [
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "architectury": ">=13.0.8",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
