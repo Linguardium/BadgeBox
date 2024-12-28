@@ -7,7 +7,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 @Mod(dist = {Dist.CLIENT},value= BadgeBoxCommonInitializer.MOD_ID)
@@ -22,12 +21,8 @@ public class BadgeBoxClientNeoForge {
     // TODO: Check if arch is fixed yet
     // Temporary until arch fixes client setup event bug and menu registry bug
     @SubscribeEvent
-    private static void setupClient(RegisterMenuScreensEvent event) {
+    private static void screenRegistration(RegisterMenuScreensEvent event) {
             event.register(ModScreenHandlerTypes.BADGE_BOX_SCREEN_HANDLER_TYPE.get(), BadgeBoxContainerScreen::new);
     }
 
-    @SubscribeEvent
-    public static void screenRegistration(FMLClientSetupEvent event) {
-
-    }
 }
