@@ -19,6 +19,7 @@ public class BadgeBoxClientNeoForge {
 
     }
 
+    // TODO: Check if arch is fixed yet
     // Temporary until arch fixes client setup event bug and menu registry bug
     @SubscribeEvent
     private static void setupClient(RegisterMenuScreensEvent event) {

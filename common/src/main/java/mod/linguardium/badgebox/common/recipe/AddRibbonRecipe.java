@@ -15,6 +15,8 @@ import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
 
+import java.util.Optional;
+
 
 public class AddRibbonRecipe extends ShapedRecipe {
 
@@ -45,7 +47,7 @@ public class AddRibbonRecipe extends ShapedRecipe {
                     BadgeInventoryComponent newComponent = result.getOrDefault(ModDataComponentType.BADGEBOX_INVENTORY_COMPONENT.get(), BadgeInventoryComponent.EMPTY);
                     newComponent = newComponent.setInventory(existingComponent.getItemStackList());
                     if (existingComponent.hasRibbonSlot()) {
-                        newComponent.setRibbonSlot(existingComponent.getRibbonSlot());
+                        newComponent.setRibbonSlot(Optional.of(existingComponent.getRibbonSlot()));
                     }
 
                     result.set(ModDataComponentType.BADGEBOX_INVENTORY_COMPONENT.get(), newComponent);

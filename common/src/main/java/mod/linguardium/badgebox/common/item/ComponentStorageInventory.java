@@ -6,6 +6,7 @@ import mod.linguardium.badgebox.common.registration.ModDataComponentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
@@ -15,19 +16,20 @@ public class ComponentStorageInventory extends SimpleInventory {
     int listSize;
     BadgeInventoryComponent backingComponent;
 
-    public ComponentStorageInventory(ItemStack holder, int size, BadgeInventoryComponent backingComponent) {
+    private ComponentStorageInventory(ItemStack holder, int size, @NotNull BadgeInventoryComponent backingComponent) {
         super(size);
         this.holder = holder;
-        listSize = backingComponent.getSize();
+        this.backingComponent = backingComponent;
+        listSize = this.backingComponent.getSize();
         for (int idx=0; idx<listSize; idx++) {
-            this.getHeldStacks().set(idx, backingComponent.get(idx));
+            this.getHeldStacks().set(idx, this.backingComponent.get(idx));
         }
-        this.hasRibbonSlot = backingComponent.hasRibbonSlot();
-        if (backingComponent.hasRibbonSlot()) {
-            this.getHeldStacks().set(listSize, backingComponent.getRibbonSlot().orElse(ItemStack.EMPTY));
+        this.hasRibbonSlot = this.backingComponent.hasRibbonSlot();
+        if (this.backingComponent.hasRibbonSlot()) {
+            this.getHeldStacks().set(listSize, this.backingComponent.getRibbonSlot());
         }
     }
-    public static ComponentStorageInventory fromBadgeInventoryComponent(ItemStack holder, BadgeInventoryComponent backingComponent) {
+    public static ComponentStorageInventory fromBadgeInventoryComponent(ItemStack holder, @NotNull BadgeInventoryComponent backingComponent) {
         int size = backingComponent.getSize();
         if (backingComponent.hasRibbonSlot()) {
             size++;
@@ -39,9 +41,12 @@ public class ComponentStorageInventory extends SimpleInventory {
         if (this.hasRibbonSlot) {
             component = component.setRibbonSlot(Optional.of(this.getHeldStacks().get(listSize)));
         }
-        holder.set(ModDataComponentType.BADGEBOX_INVENTORY_COMPONENT.get(), component);
+        updateBackingStackComponent(component);
     }
-
+    public void updateBackingStackComponent(BadgeInventoryComponent component) {
+        this.holder.set(ModDataComponentType.BADGEBOX_INVENTORY_COMPONENT.get(), component);
+        this.backingComponent = component;
+    }
     @Override
     public void markDirty() {
         super.markDirty();

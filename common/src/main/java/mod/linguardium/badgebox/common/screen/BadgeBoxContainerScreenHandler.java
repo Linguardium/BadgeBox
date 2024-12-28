@@ -65,7 +65,7 @@ public class BadgeBoxContainerScreenHandler extends ScreenHandler {
 
     private void addBadgeSlots() {
         int offset = 0;
-        int ribbonOffsetX = 28;
+        int ribbonOffsetX = 29;
         int ribbonOffsetY = 9;
         if (hasRibbonSlot()) {
             offset = -13;

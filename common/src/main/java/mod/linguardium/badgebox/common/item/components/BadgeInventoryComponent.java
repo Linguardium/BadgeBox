@@ -23,7 +23,8 @@ public class BadgeInventoryComponent {
     public static final MapCodec<BadgeInventoryComponent> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             Codec.INT.fieldOf("Size").forGetter(BadgeInventoryComponent::getSize),
             Codec.unboundedMap(Codec.STRING, ItemStack.CODEC).fieldOf("Items").forGetter(BadgeInventoryComponent::getNonEmptySlotMap),
-            ItemStack.CODEC.optionalFieldOf("RibbonSlot").forGetter(BadgeInventoryComponent::getRibbonSlot)
+            Codec.BOOL.fieldOf("RibbonSlotEnabled").forGetter(BadgeInventoryComponent::hasRibbonSlot),
+            ItemStack.CODEC.optionalFieldOf("RibbonSlot",ItemStack.EMPTY).forGetter(BadgeInventoryComponent::getRibbonSlot)
     ).apply(instance, BadgeInventoryComponent::decode));
 
     public static final PacketCodec<RegistryByteBuf, BadgeInventoryComponent> PACKET_CODEC = PacketCodec.tuple(
@@ -31,7 +32,9 @@ public class BadgeInventoryComponent {
             BadgeInventoryComponent::getSize,
             PacketCodecs.map(Maps::newHashMapWithExpectedSize,PacketCodecs.STRING, ItemStack.PACKET_CODEC),
             BadgeInventoryComponent::getNonEmptySlotMap,
-            PacketCodecs.optional(ItemStack.PACKET_CODEC),
+            PacketCodecs.BOOL,
+            BadgeInventoryComponent::hasRibbonSlot,
+            ItemStack.OPTIONAL_PACKET_CODEC,
             BadgeInventoryComponent::getRibbonSlot,
             BadgeInventoryComponent::decode);
 
@@ -78,8 +81,9 @@ public class BadgeInventoryComponent {
     public boolean hasRibbonSlot() {
         return this.ribbonSlot.isPresent();
     }
-    public Optional<ItemStack> getRibbonSlot() {
-        return this.ribbonSlot;
+
+    public ItemStack getRibbonSlot() {
+        return this.ribbonSlot.orElse(ItemStack.EMPTY);
     }
 
     private Map<String, ItemStack> getNonEmptySlotMap() {
@@ -106,12 +110,16 @@ public class BadgeInventoryComponent {
         return false;
     }
 
-    private static BadgeInventoryComponent decode(int size, Map<String, ItemStack> nonEmptySlotMap, Optional<ItemStack> ribbonSlot) {
+    private static BadgeInventoryComponent decode(int size, Map<String, ItemStack> nonEmptySlotMap, Boolean ribbonSlotEnabled, ItemStack ribbonSlot) {
         DefaultedList<ItemStack> newItemList = DefaultedList.ofSize(size, ItemStack.EMPTY);
         nonEmptySlotMap.forEach((key, value)->{
             newItemList.set(Integer.parseInt(key), value);
         });
-        return new BadgeInventoryComponent(ImmutableList.copyOf(newItemList), ribbonSlot);
+        Optional<ItemStack> optionalRibbonSlot = Optional.empty();
+        if (ribbonSlotEnabled) {
+            optionalRibbonSlot = Optional.of(ribbonSlot);
+        }
+        return new BadgeInventoryComponent(ImmutableList.copyOf(newItemList), optionalRibbonSlot);
     }
 
 }
