@@ -37,7 +37,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion("has_badge_box", conditionsFromItem(ModItems.BADGE_BOX_ITEM.get()))
                 .offerTo(converter, Util.id("fancy_badge_box"));
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BADGE_BOX_ITEM_RIBBON.get())
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BADGE_BOX_ITEM.get())
                 .input('a', Items.RED_WOOL)
                 .input('b', Items.WHITE_WOOL)
                 .input('c', ConventionalItemTags.CHESTS)
