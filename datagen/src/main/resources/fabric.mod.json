@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "badgebox",
+  "version": "${version}",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "mod.linguardium.badgebox.datagen.BadgeBoxDataGenerator"
+    ],
+    "main": ["mod.linguardium.badgebox.datagen.BadgeBoxDataGenerator"]
+  },
+  "mixins": [
+    "badgebox.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "architectury": ">=13.0.8",
+    "fabric-api": "*"
+  }
+}

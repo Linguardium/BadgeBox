@@ -13,16 +13,14 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "mod.linguardium.badgebox.fabric.common.CobblemonBadgeBox"
+      "mod.linguardium.badgebox.fabric.BadgeBoxFabricInitializer"
     ],
     "client": [
-      "mod.linguardium.badgebox.fabric.client.CobblemonBadgeBoxClient"
-    ],
-    "fabric-datagen": [
-      "mod.linguardium.badgebox.fabric.datagen.CobblemonBadgeBoxDataGenerator"
+      "mod.linguardium.badgebox.fabric.client.BadgeBoxFabricClientInitializer"
     ]
   },
   "mixins": [
+    "badgebox.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.9",

@@ -1,11 +1,12 @@
 {
   "required": true,
-  "package": "mod.linguardium.badgebox.mixin",
+  "package": "mod.linguardium.badgebox.common.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [
   ],
   "mixins": [
+    "ShapedRecipeAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

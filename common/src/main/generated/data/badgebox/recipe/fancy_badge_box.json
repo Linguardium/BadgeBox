@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "badgebox:upgrade_box_recipe",
   "category": "misc",
   "key": {
     "a": {
