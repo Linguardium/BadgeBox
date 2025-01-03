@@ -45,7 +45,7 @@ public class ModLangProvider extends FabricLanguageProvider {
     private void addItemTranslations(TranslationBuilder translationBuilder) {
         // BOXES
         translationBuilder.add(ModItems.BADGE_BOX_ITEM.get(), "Badge Box");
-        translationBuilder.add(ModItems.BADGE_BOX_ITEM_RIBBON.get(), "Fancy Badge Box");
+        translationBuilder.add(ModItems.BADGE_BOX_ITEM_RIBBON.get(), "Badge Box");
 
         // BADGES
         translationBuilder.add(getBadge("fairy"), "Aether Badge");

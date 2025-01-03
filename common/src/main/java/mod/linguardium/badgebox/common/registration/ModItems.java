@@ -35,6 +35,7 @@ public class ModItems {
             settings->new BadgeBoxItem(
                     settings
                     .maxCount(1)
+                    .rarity(Rarity.UNCOMMON)
                     .component(ModDataComponentType.BADGEBOX_INVENTORY_COMPONENT.get(),
                             BadgeInventoryComponent.EMPTY.setRibbonSlot(Optional.of(ItemStack.EMPTY)))
             )
